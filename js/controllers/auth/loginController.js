@@ -11,7 +11,7 @@ app.controller(
     };
     this.login = function () {
       this.form.errors = [];
-      if (!formService.inputsIsEmpty(this.form)) {
+      if (formService.inputsIsEmpty(this.form)) {
         toastr.error("Check fields!");
         return;
       }
@@ -28,7 +28,7 @@ app.controller(
         console.log(data);
         if (data.status) {
           toastr.success(data.message);
-          // $cookies.put("token", data.token);
+          $cookies.put("token", data.token);
           $location.url("/");
         } else {
           toastr.error(data.message);

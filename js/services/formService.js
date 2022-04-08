@@ -3,11 +3,11 @@
 app.factory("formService", function () {
   return {
     inputsIsEmpty: function (form) {
-      let status = true;
+      let status = false;
       for (const property in form) {
         if (!form[property]) {
           form.errors.push([property, `${property} can not be empty`]);
-          status = false;
+          status = true;
         }
       }
 

@@ -11,7 +11,7 @@ app.controller("registerController", function (formService, $http, $location) {
   };
   this.register = function () {
     this.form.errors = [];
-    if (!formService.inputsIsEmpty(this.form)) {
+    if (formService.inputsIsEmpty(this.form)) {
       toastr.error("You must be fill all inputs");
       return;
     }

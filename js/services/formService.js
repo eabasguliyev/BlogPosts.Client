@@ -10,7 +10,6 @@ app.factory("formService", function () {
           status = true;
         }
       }
-
       return status;
     },
   };

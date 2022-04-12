@@ -18,5 +18,15 @@ app.config(function ($routeProvider, $locationProvider) {
       controller: "createController",
       controllerAs: "createCtrl",
       templateUrl: "Views/article/create.html",
+    })
+    .when("/article/index", {
+      controller: "indexController",
+      controllerAs: "indexCtrl",
+      templateUrl: "Views/article/index.html",
+    })
+    .when("/article/details/:id", {
+      controller: "detailsController",
+      controllerAs: "detailsCtrl",
+      templateUrl: "Views/article/details.html",
     });
 });

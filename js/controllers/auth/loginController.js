@@ -2,8 +2,7 @@
 
 app.controller(
   "loginController",
-  function (formService, $http, $location, $cookies) {
-    const url = apiUrl + "auth/signin";
+  function (formService, authService, $http, $location, $cookies) {
     this.form = {
       username: "",
       password: "",
@@ -16,24 +15,20 @@ app.controller(
         return;
       }
 
-      $http({
-        method: "POST",
-        url: url,
-        data: {
-          username: this.form.username,
-          password: this.form.password,
-        },
-      }).then((resp) => {
-        var data = resp.data;
-        console.log(data);
-        if (data.status) {
-          toastr.success(data.message);
-          $cookies.put("token", data.token);
-          $location.url("/");
-        } else {
-          toastr.error(data.message);
-        }
-      });
+      authService
+        .login(this.form.username, this.form.password)
+        .then((data) => {
+          if (data.status) {
+            toastr.success(data.message);
+            $cookies.put("token", data.token);
+            $location.url("/");
+          } else {
+            toastr.error(data.message);
+          }
+        })
+        .catch(() => {
+          toastr.error("Something went wrong, please try again later!");
+        });
     };
   }
 );

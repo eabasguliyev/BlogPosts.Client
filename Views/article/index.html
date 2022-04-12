@@ -1,0 +1,12 @@
+<div
+  class="card"
+  style="width: 18rem"
+  ng-repeat="article in indexCtrl.articles"
+>
+  <div class="card-body">
+    <h5 class="card-title">{{article.title}}</h5>
+    <a href="article/details/{{article.id}}" class="btn btn-primary"
+      >Show more</a
+    >
+  </div>
+</div>

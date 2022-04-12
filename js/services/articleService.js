@@ -4,16 +4,13 @@ app.factory("articleService", function ($http) {
   const url = apiUrl + "article/";
 
   return {
-    createArticle: function (title, text, token) {
+    createArticle: function (title, text) {
       return $http({
         method: "post",
         url: url + "create",
         data: {
           title,
           text,
-        },
-        headers: {
-          Authorization: token,
         },
       }).then((resp) => {
         if (!resp.data.status) {
@@ -23,23 +20,19 @@ app.factory("articleService", function ($http) {
         }
       });
     },
-    getAllArticles: function (token) {
+    getAllArticles: function () {
       return $http({
         method: "get",
         url: url + "getall",
-        headers: {
-          Authorization: token,
-        },
       }).then((resp) => resp.data);
     },
-    getArticleById: function (id, token) {
+    getArticleById: function (id) {
       return $http({
         method: "get",
         url: url + "getbyid/",
         params: {
           id,
         },
-        headers: { Authorization: token },
       }).then((resp) => resp.data);
     },
   };

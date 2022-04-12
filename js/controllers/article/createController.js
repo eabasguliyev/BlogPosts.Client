@@ -2,15 +2,14 @@
 
 app.controller(
   "createController",
-  function (formService, articleService, authService, $cookies, $location) {
+  function (formService, articleService, authService, $location) {
     this.form = {
       title: "",
       text: "",
       errors: [],
     };
-    const token = "Bearer " + $cookies.get("token");
     authService
-      .isAuthorized(token)
+      .isAuthorized()
       .then((authorised) => {
         this.create = function () {
           this.form.errors = [];
@@ -21,7 +20,7 @@ app.controller(
           }
 
           articleService
-            .createArticle(this.form.title, this.form.text, token)
+            .createArticle(this.form.title, this.form.text)
             .catch((err) => {
               if (err.status === 401) {
                 toastr.error("You must be logged in");

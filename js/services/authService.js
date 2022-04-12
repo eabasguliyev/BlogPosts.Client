@@ -3,12 +3,8 @@
 app.factory("authService", function ($http) {
   const url = apiUrl + "auth/";
   return {
-    isAuthorized: function (token) {
-      return $http.get(`${url}isauthorized`, {
-        headers: {
-          Authorization: token,
-        },
-      });
+    isAuthorized: function () {
+      return $http.get(`${url}isauthorized`);
     },
     login: function (username, password) {
       return $http({

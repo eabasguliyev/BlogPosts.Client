@@ -1,9 +1,8 @@
 /// <reference path="../../app.js" />
 
-app.controller("indexController", function (articleService, $cookies) {
-  const token = "Bearer " + $cookies.get("token");
+app.controller("indexController", function (articleService) {
   articleService
-    .getAllArticles(token)
+    .getAllArticles()
     .then((resp) => {
       this.articles = resp;
     })
